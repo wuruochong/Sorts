@@ -1,13 +1,12 @@
 /*
 Ruochong Wu
 APCS1 PD 10
-HW51 -- Dat Bubbly Tho
-2015-12-21
+Sorts
 */
 
 import java.util.ArrayList;
 
-public class BubbleSort {
+public class MySorts {
 
     //~~~~~~~~~~~~~~~~~~~ HELPER METHODS ~~~~~~~~~~~~~~~~~~~
     //precond: lo < hi && size > 0
@@ -47,12 +46,7 @@ public class BubbleSort {
 	return true;
     }
     
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
-    
-    // VOID version of bubbleSort
-    // Rearranges elements of input ArrayList
-    // postcondition: data's elements sorted in ascending order
+
     public static void bubbleSortV( ArrayList<Comparable> data ) {
 	int count =0;
 	while (isSorted(data)==false){
@@ -66,33 +60,65 @@ public class BubbleSort {
 	    count++;
 	}
     }
-    
-    //Unfinished
-    /*    public static ArrayList<Comparable> bubbleSortHelper(ArrayList<Comparable> input , int index){
-	  input.set(index,input.set(index-1,input(index)));
-	return input;
-	}
-    
-    
-    // ArrayList-returning bubbleSort
-    // postcondition: order of input ArrayList's elements unchanged
-    //                Returns sorted copy of input ArrayList.
-    public static ArrayList<Comparable> bubbleSort( ArrayList<Comparable> input ){
-    if (isSorted(input)==true){
-	return input;
-	    }
-	else {
-	return bubbleSort(bubbleSortHelper(input,
-	    }//end bubbleSort -- O(?)
-    */
+
+
     
     public static ArrayList<Comparable> bubbleSort(ArrayList<Comparable> input){
 	bubbleSortV(input);
 	return input;
     }
 
+        public static void minHelper(int index, ArrayList<Comparable> data){
+	int champIndex = index;
+	for (int counter = index ; counter < data.size() ; counter++){
+	    if ((data.get(champIndex)).compareTo(data.get(counter)) > 0){
+		champIndex = counter;
+	    }
+	}
+	data.set(index,(data.set(champIndex,data.get(index))));
+    }
+
+    // VOID version of SelectionSort
+    // Rearranges elements of input ArrayList
+    // postcondition: data's elements sorted in ascending order
+    public static void selectionSortV( ArrayList<Comparable> data ) 
+    {
+	for (int x = 0 ; x<data.size() - 1 ; x++){
+	    minHelper(x,data);
+	}
+    
+	    
+	    
+	    
+	/* your implementation UP IN HERE, UP IN HERE */
+    }//end selectionSort -- O(?)
+
+
+    // ArrayList-returning selectionSort
+    // postcondition: order of input ArrayList's elements unchanged
+    //                Returns sorted copy of input ArrayList.
+    public static ArrayList<Comparable> selectionSort( ArrayList<Comparable> input ) 
+    {
+	ArrayList<Comparable> temp = new ArrayList();
+	for (int counter = 0 ; counter < input.size() ; counter++){
+	    temp.add(input.get(counter));
+	}
+	selectionSortV(temp);
+	return temp;
+        }//end selectionSort -- O(?)
+
+
+
     public static ArrayList<Comparable> BogoSort(ArrayList<Comparable> input){
 	while (isSorted(input)==false){
 	    shuffle(input);
 	}
+	return input;
     }
+
+    public static void BogoSortV(ArrayList<Comparable> input){
+	while (isSorted(input)==false){
+	    shuffle(input);
+	}
+    }
+}
